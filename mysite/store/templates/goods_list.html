@@ -1,0 +1,55 @@
+
+{% extends "base2.html" %}
+{% load static %}
+{% block title %}Item List{% endblock %}
+{% block body %}
+
+<style type="text/css">
+	table {
+		border-collapse: collapse;
+	}
+
+	/*Item List第1列*/
+	.col1 {
+		padding-top: 5px;
+		border-top: 1px dashed #666666;
+		text-indent: 40px
+	}
+
+	/*Item List第2列*/
+	.col2 {
+		padding-top: 5px;
+		border-top: 1px dashed #666666;
+		text-align: right;
+	}
+
+	/*Item List第3列*/
+	.col3 {
+		padding-top: 5px;
+		border-top: 1px dashed #666666;
+		text-align: center;
+	}
+</style>
+
+<table width="100%" border="0" align="center">
+
+</table>
+<hr width="100%" />
+<div class="text3" align="center">Choose Item from Item List</div>
+<br>
+<table width="100%" border="0" align="center">
+  <tr bgcolor="#b4c8ed">
+    <th>Item</th>
+    <th width="5%" >Price</th>
+    <th width="15%" >Add to Cart</th>
+  </tr>
+
+{% for goods in goods_list %}
+  <tr bgcolor={% cycle '#ffffff' '#edf8ff'%}>
+    <td class="col1"><a href="/detail/?id={{goods.id}}">{{ goods.description }}</a></td>
+    <td class="col2">{{goods.price}}</td>
+    <td class="col3"><a href="/add/?id={{goods.id}}&name={{goods.name}}&price={{goods.price}}&page=list">Add</a></td>
+  </tr> 
+{% endfor %}
+</table>
+{% endblock %}
